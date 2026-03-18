@@ -123,9 +123,12 @@ void main()
 
             float theta = dot(lightDir, normalize(-flashLight.direction));//cos theta 
             lightDist = length(flashLight.position - FragPos);
-            lightDir = normalize(flashLight.position - FragPos);
+
+            lightDir = normalize(-flashLight.direction);
+
+            
             float epsilon   = flashLight.cutOff - flashLight.cutOff2;
-            float intensity = clamp((theta - flashLight.cutOff2) / epsilon, 0.0, 1.0);    
+            float intensity = clamp((theta - flashLight.cutOff2) / epsilon, 0.0, 5.0);    
                 
             lightAmb = flashLight.ambient;
             lightDiff = flashLight.diffuse*intensity;
